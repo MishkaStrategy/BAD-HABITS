@@ -6,7 +6,9 @@ The concept treats the venue itself as the design system: raw concrete, cobalt a
 
 ## Production
 
-https://mishkastrategy.github.io/BAD-HABITS/
+Target GitHub Pages URL: https://mishkastrategy.github.io/BAD-HABITS/
+
+The production build is already published to the repository's `gh-pages` branch. GitHub Pages itself still requires the repository's one-time publishing-source setting to be enabled before the URL becomes public.
 
 ## Stack
 
@@ -15,7 +17,7 @@ https://mishkastrategy.github.io/BAD-HABITS/
 - custom CSS, no UI kit
 - native IntersectionObserver / accessible tab-style interactions
 - Sharp build pipeline for optimized AVIF photography
-- GitHub Actions + GitHub Pages
+- GitHub Actions + `gh-pages` production branch
 
 The runtime is deliberately dependency-light: the proposal keeps its editorial art direction custom and ships very little JavaScript. Editable project data is centralized in `src/data.ts`.
 
@@ -33,7 +35,7 @@ Open `http://localhost:4173`.
 
 ## Deployment
 
-`.github/workflows/pages.yml` builds and deploys `dist/` to GitHub Pages on every push to `main`.
+`.github/workflows/pages.yml` builds `dist/` on every push to `main` and force-publishes the production output to the `gh-pages` branch. Once GitHub Pages is enabled for this repository with `gh-pages` / `(root)` as the publishing source, future pushes remain synchronized automatically.
 
 ## Project structure
 
