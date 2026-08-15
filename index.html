@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111417" />
   <meta name="description" content="Персональная digital-концепция для BAD HABITS, Большевистская 94, Новосибирск." />
+  <link rel="canonical" href="https://mishkacher.github.io/Rima/BAD-HABITS/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="BAD HABITS / DIGITAL AFTER DARK" />
+  <meta property="og:description" content="Персональная digital-концепция для BAD HABITS, Большевистская 94, Новосибирск." />
+  <meta property="og:url" content="https://mishkacher.github.io/Rima/BAD-HABITS/" />
+  <meta name="twitter:card" content="summary" />
   <title>BAD HABITS / DIGITAL AFTER DARK</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <link rel="preload" as="image" href="./images/hero.avif" type="image/avif" />
@@ -29,7 +35,7 @@
     <section class="hero" id="hero">
       <picture class="hero-media">
         <source srcset="./images/hero.avif" type="image/avif" />
-        <img src="./images/hero.avif" width="1800" height="1013" alt="Интерьер BAD HABITS на Большевистской: светящаяся линия потолка и янтарная барная стойка" fetchpriority="high" />
+        <img src="./images/hero.avif" width="1440" height="1080" alt="Интерьер BAD HABITS на Большевистской: светящаяся линия потолка и янтарная барная стойка" fetchpriority="high" />
       </picture>
       <div class="hero-shade"></div>
       <div class="hero-topline">
@@ -55,8 +61,8 @@
       </div>
       <div class="observed-grid">
         <figure class="portrait-card media-card" data-reveal>
-          <picture><img src="./images/03.avif" loading="lazy" alt="Зона BAD HABITS с тёплым светом и городской эклектикой"></picture>
-          <figcaption>116 м² / 45 гостей / главный зал / бар / кухня / VIP</figcaption>
+          <picture><img src="./images/03.avif" width="1080" height="1440" loading="lazy" decoding="async" alt="Зона BAD HABITS с тёплым светом и городской эклектикой"></picture>
+          <figcaption>45 гостей / зоны отдыха / кухня / бар / VIP</figcaption>
         </figure>
         <div class="observations">
           <article data-reveal><span>01</span><h3>Свет вместо «тёмной кальянной»</h3><p>Гости отдельно замечают светлый интерьер, панорамные окна и вид. Это уже отличает филиал от жанрового клише.</p></article>
@@ -75,7 +81,7 @@
 
     <section class="section gap" id="gap">
       <div class="gap-media" data-reveal>
-        <picture><img src="./images/06.avif" loading="lazy" alt="Интерьер BAD HABITS с бетонными поверхностями и световой линией"></picture>
+        <picture><img src="./images/06.avif" width="1800" height="1013" loading="lazy" decoding="async" alt="Интерьер BAD HABITS с бетонными поверхностями и световой линией"></picture>
       </div>
       <div class="gap-copy" data-reveal>
         <p class="eyebrow">02 / Offline сильнее online</p>
@@ -97,27 +103,27 @@
       <div class="browser" data-reveal>
         <div class="browser-bar"><span></span><span></span><span></span><b>badhabits / new digital</b></div>
         <div class="mock-shell">
-          <div class="mock-nav"><strong>BAD<br>HABITS</strong><div role="tablist" aria-label="Концептуальные экраны"><button data-mock-tab="home" aria-selected="true">HOME</button><button data-mock-tab="branch" aria-selected="false">BRANCH</button><button data-mock-tab="menu" aria-selected="false">MENU</button><button data-mock-tab="book" aria-selected="false">BOOK</button></div></div>
+          <div class="mock-nav"><strong>BAD<br>HABITS</strong><div role="tablist" aria-label="Концептуальные экраны"><button id="mock-tab-home" role="tab" type="button" data-mock-tab="home" aria-controls="mock-view-home" aria-selected="true" tabindex="0">HOME</button><button id="mock-tab-branch" role="tab" type="button" data-mock-tab="branch" aria-controls="mock-view-branch" aria-selected="false" tabindex="-1">BRANCH</button><button id="mock-tab-menu" role="tab" type="button" data-mock-tab="menu" aria-controls="mock-view-menu" aria-selected="false" tabindex="-1">MENU</button><button id="mock-tab-book" role="tab" type="button" data-mock-tab="book" aria-controls="mock-view-book" aria-selected="false" tabindex="-1">BOOK</button></div></div>
 
-          <div class="mock-view mock-home" data-mock-view="home">
-            <picture><img src="./images/02.avif" alt="Концептуальный фон — интерьер BAD HABITS" loading="lazy"></picture>
+          <div id="mock-view-home" class="mock-view mock-home" role="tabpanel" aria-labelledby="mock-tab-home" data-mock-view="home">
+            <picture><img src="./images/02.avif" width="1527" height="1080" decoding="async" alt="Концептуальный фон — интерьер BAD HABITS" loading="lazy"></picture>
             <div class="mock-overlay"><span>ЕВРОПЕЙСКИЙ БЕРЕГ</span><h3>Светлый днём.<br>Другой после темноты.</h3><button type="button">ВЫБРАТЬ СЦЕНАРИЙ <span>→</span></button></div>
             <div class="mock-clock">54.9908° N<br>82.9774° E</div>
           </div>
 
-          <div class="mock-view mock-branch" data-mock-view="branch" hidden>
-            <div class="mock-branch-media"><picture><img src="./images/05.avif" loading="lazy" alt="Барная зона BAD HABITS"></picture></div>
+          <div id="mock-view-branch" class="mock-view mock-branch" role="tabpanel" aria-labelledby="mock-tab-branch" data-mock-view="branch" hidden>
+            <div class="mock-branch-media"><picture><img src="./images/05.avif" width="1080" height="1440" loading="lazy" decoding="async" alt="Барная зона BAD HABITS"></picture></div>
             <div class="mock-branch-copy"><span>BRANCH / 03</span><h3>Большевистская, 94</h3><p>Панорамный свет, тёплые стеклоблоки, VIP-комната и изгибающаяся линия, которая ведёт через пространство.</p><div class="chips"><i>МЕНЮ</i><i>ФОТО</i><i>АКЦИИ</i><i>КАРТА</i></div></div>
           </div>
 
-          <div class="mock-view mock-menu" data-mock-view="menu" hidden>
+          <div id="mock-view-menu" class="mock-view mock-menu" role="tabpanel" aria-labelledby="mock-tab-menu" data-mock-view="menu" hidden>
             <div class="menu-art"><span>MENU / BY MOOD</span><h3>Не лист PDF.<br>Выбор по настроению.</h3></div>
-            <div class="menu-list"><button>КУХНЯ <span>28 →</span></button><button>БАР <span>34 →</span></button><button>ПАРОВЫЕ КОКТЕЙЛИ <span>→</span></button><button>БИЗНЕС-ЧАСЫ <span>до 17:00 →</span></button></div>
+            <div class="menu-list"><button type="button">КУХНЯ <span>→</span></button><button type="button">БАР <span>→</span></button><button type="button">ПАРОВЫЕ КОКТЕЙЛИ <span>→</span></button><button type="button">БИЗНЕС-ЧАСЫ <span>до 17:00 →</span></button></div>
           </div>
 
-          <div class="mock-view mock-book" data-mock-view="book" hidden>
+          <div id="mock-view-book" class="mock-view mock-book" role="tabpanel" aria-labelledby="mock-tab-book" data-mock-view="book" hidden>
             <div class="booking-copy"><span>BOOK / WITHOUT FRICTION</span><h3>Выбрал атмосферу.<br>Выбрал филиал.<br><em>Забронировал.</em></h3></div>
-            <div class="booking-form"><label>ФИЛИАЛ<strong>Большевистская, 94</strong></label><label>СЦЕНАРИЙ<strong>Вечер вдвоём</strong></label><label>ВРЕМЯ<strong>Сегодня / 20:30</strong></label><button>ПРОДОЛЖИТЬ <span>→</span></button></div>
+            <div class="booking-form"><label>ФИЛИАЛ<strong>Большевистская, 94</strong></label><label>СЦЕНАРИЙ<strong>Вечер вдвоём</strong></label><label>ВРЕМЯ<strong>20:30 / пример</strong></label><button type="button">ПРОДОЛЖИТЬ <span>→</span></button></div>
           </div>
         </div>
       </div>
@@ -127,14 +133,14 @@
       <div class="section-head" data-reveal><p class="eyebrow">04 / Пять сценариев одного BAD HABITS</p><h2>Не только «покурить кальян».<br><span>Пять причин выбрать одну точку.</span></h2></div>
       <div class="scenario-layout" data-reveal>
         <div class="scenario-tabs" role="group" aria-label="Сценарии посещения">
-          <button data-scenario="day" aria-pressed="true"><span>10:40</span>ДНЁМ</button>
-          <button data-scenario="work" aria-pressed="false"><span>14:20</span>С НОУТБУКОМ</button>
-          <button data-scenario="date" aria-pressed="false"><span>19:10</span>ВДВОЁМ</button>
-          <button data-scenario="friends" aria-pressed="false"><span>22:35</span>С ДРУЗЬЯМИ</button>
-          <button data-scenario="vip" aria-pressed="false"><span>00:15</span>VIP / СОБЫТИЕ</button>
+          <button type="button" data-scenario="day" aria-pressed="true"><span>10:40</span>ДНЁМ</button>
+          <button type="button" data-scenario="work" aria-pressed="false"><span>14:20</span>С НОУТБУКОМ</button>
+          <button type="button" data-scenario="date" aria-pressed="false"><span>19:10</span>ВДВОЁМ</button>
+          <button type="button" data-scenario="friends" aria-pressed="false"><span>22:35</span>С ДРУЗЬЯМИ</button>
+          <button type="button" data-scenario="vip" aria-pressed="false"><span>00:15</span>VIP / СОБЫТИЕ</button>
         </div>
         <div class="scenario-visual">
-          <picture><img src="./images/04.avif" loading="lazy" alt="Камерная зона BAD HABITS"></picture>
+          <picture><img src="./images/04.avif" width="1080" height="1440" loading="lazy" decoding="async" alt="Камерная зона BAD HABITS"></picture>
           <div id="scenario-detail" class="scenario-detail" aria-live="polite"></div>
         </div>
       </div>
@@ -147,13 +153,13 @@
       </div>
       <div class="branch-selector" data-reveal>
         <div class="branch-list" role="tablist" aria-label="Филиалы BAD HABITS">
-          <button data-branch="0" aria-selected="true"><span>01</span><b>Большевистская, 94</b><i>Европейский берег</i></button>
-          <button data-branch="1" aria-selected="false"><span>02</span><b>Октябрьская, 42</b><i>Тихий центр</i></button>
-          <button data-branch="2" aria-selected="false"><span>03</span><b>Карла Маркса, 43</b><i>Левый берег</i></button>
-          <button data-branch="3" aria-selected="false"><span>04</span><b>Красный пр-т, 323</b><i>Онега</i></button>
-          <button data-branch="4" aria-selected="false"><span>05</span><b>Писарева, 53</b><i>Центр</i></button>
+          <button id="branch-tab-0" role="tab" type="button" data-branch="0" aria-controls="branch-panel" aria-selected="true" tabindex="0"><span>01</span><b>Большевистская, 94</b><i>Европейский берег</i></button>
+          <button id="branch-tab-1" role="tab" type="button" data-branch="1" aria-controls="branch-panel" aria-selected="false" tabindex="-1"><span>02</span><b>Октябрьская, 42</b><i>Тихий центр</i></button>
+          <button id="branch-tab-2" role="tab" type="button" data-branch="2" aria-controls="branch-panel" aria-selected="false" tabindex="-1"><span>03</span><b>Карла Маркса, 43</b><i>Левый берег</i></button>
+          <button id="branch-tab-3" role="tab" type="button" data-branch="3" aria-controls="branch-panel" aria-selected="false" tabindex="-1"><span>04</span><b>Красный пр-т, 323</b><i>Онега</i></button>
+          <button id="branch-tab-4" role="tab" type="button" data-branch="4" aria-controls="branch-panel" aria-selected="false" tabindex="-1"><span>05</span><b>Писарева, 53</b><i>Центр</i></button>
         </div>
-        <div id="branch-panel" class="branch-panel"></div>
+        <div id="branch-panel" class="branch-panel" role="tabpanel" aria-labelledby="branch-tab-0" aria-live="polite" tabindex="0"></div>
       </div>
 
       <div class="business-grid" data-reveal>
@@ -186,7 +192,7 @@
     </section>
 
     <section class="final" id="final">
-      <picture class="final-media"><img src="./images/05.avif" loading="lazy" alt="Тёплая барная зона BAD HABITS"></picture>
+      <picture class="final-media"><img src="./images/05.avif" width="1080" height="1440" loading="lazy" decoding="async" alt="Тёплая барная зона BAD HABITS"></picture>
       <div class="final-shade"></div>
       <div class="final-copy" data-reveal>
         <span>BAD HABITS / DIGITAL AFTER DARK</span>
@@ -194,7 +200,7 @@
         <p>Предлагаем сделать так, чтобы digital работал с той же силой.</p>
         <div class="final-actions"><a class="primary" id="primary-cta" href="mailto:mishkacher@gmail.com?subject=BAD%20HABITS%20%2F%20Digital%20After%20Dark">ОБСУДИТЬ КОНЦЕПЦИЮ <span>→</span></a><a class="secondary" href="#concept">ВЕРНУТЬСЯ К ПРОТОТИПУ</a></div>
       </div>
-      <footer><span>PERSONAL PROPOSAL / 2026</span><a id="current-site-link" href="https://badhabitslounge.ru/bolshevistskaya" rel="noopener">CURRENT BAD HABITS SITE ↗</a><a href="https://2gis.ru/novosibirsk/firm/70000001083704156" rel="noopener">SOURCE / 2GIS ↗</a></footer>
+      <footer><span>PERSONAL PROPOSAL / 2026</span><a id="current-site-link" href="https://badhabitslounge.ru/bolshevistskaya" target="_blank" rel="noopener noreferrer">CURRENT BAD HABITS SITE →</a><a href="https://2gis.ru/novosibirsk/firm/70000001083704156" target="_blank" rel="noopener noreferrer">SOURCE / 2GIS →</a></footer>
     </section>
   </main>
   <script type="module" src="./assets/main.js"></script>
