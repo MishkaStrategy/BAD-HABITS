@@ -11,13 +11,13 @@ https://mishkastrategy.github.io/BAD-HABITS/
 ## Stack
 
 - semantic HTML5
-- TypeScript (interaction/progressive enhancement)
+- TypeScript for progressive interaction
 - custom CSS, no UI kit
 - native IntersectionObserver / accessible tab-style interactions
-- local optimized AVIF assets
+- Sharp build pipeline for optimized AVIF photography
 - GitHub Actions + GitHub Pages
 
-A dependency-light implementation was chosen for this proposal because it reduces runtime JavaScript, keeps the editorial art direction fully custom, and helps mobile performance. Content/config is separated from interaction code in `src/data.ts`.
+The runtime is deliberately dependency-light: the proposal keeps its editorial art direction custom and ships very little JavaScript. Editable project data is centralized in `src/data.ts`.
 
 ## Local development
 
@@ -29,17 +29,11 @@ npm run serve
 
 Open `http://localhost:4173`.
 
-## Production build
-
-```bash
-npm run build
-```
-
-Output is written to `dist/`.
+`npm run build` prepares the documented BAD HABITS photography locally as AVIF, compiles TypeScript and assembles `dist/`.
 
 ## Deployment
 
-`.github/workflows/pages.yml` builds the project and deploys `dist/` to GitHub Pages on every push to `main`. The workflow uses `actions/configure-pages` with Pages enablement for a new repository.
+`.github/workflows/pages.yml` builds and deploys `dist/` to GitHub Pages on every push to `main`.
 
 ## Project structure
 
@@ -48,12 +42,14 @@ Output is written to `dist/`.
 ├── .github/workflows/pages.yml
 ├── public/
 │   ├── favicon.svg
-│   └── images/            # local optimized BAD HABITS photography
-├── scripts/build.mjs      # production build copier
+│   └── images/            # generated optimized AVIF assets
+├── scripts/
+│   ├── fetch-images.mjs   # downloads documented sources + optimizes locally
+│   └── build.mjs          # assembles production output
 ├── src/
-│   ├── data.ts            # editable proposal data/config
+│   ├── data.ts            # contacts, pricing, branches, scenarios, roadmap
 │   ├── main.ts            # interactions / scroll state / selectors
-│   └── styles.css         # full responsive art direction
+│   └── styles-*.css       # responsive art direction, concatenated on build
 ├── index.html
 ├── 404.html
 ├── SOURCES.md
@@ -65,33 +61,31 @@ Output is written to `dist/`.
 
 `src/data.ts` → `proposal.pricing`.
 
-No approved project price is invented. The current production UI explicitly states that final cost is fixed after the v1 scope is agreed.
+No approved project price is invented. The production UI explicitly states that final cost is fixed after the v1 scope is agreed.
 
 ## Where to change contacts
 
 `src/data.ts` → `proposal.contact`.
 
-The proposal CTA is configured to the proposer email from the connected GitHub profile (`proposalEmail` / `proposalMailto`). BAD HABITS public booking contacts remain separate source data and are not used as the proposal CTA.
+The commercial-proposal CTA is separate from BAD HABITS public booking contacts.
 
 ## Where to change branches / scenarios / roadmap
 
-`src/data.ts` contains network branches, visit scenarios, roadmap and scope data. Visible narrative markup is in `index.html` so the editorial composition can remain intentionally art-directed.
+`src/data.ts` contains network branches, visit scenarios, roadmap and scope data. Visible narrative markup remains in `index.html` so the editorial composition can stay intentionally art-directed.
 
-## Images
+## Images and sources
 
-Optimized production assets are in `public/images/` in AVIF. They are local copies — production does not hotlink source images.
-
-Full origin mapping and content-research references are documented in [`SOURCES.md`](./SOURCES.md).
+The build downloads the exact source photographs listed in [`SOURCES.md`](./SOURCES.md), resizes them and writes local AVIF copies to `public/images/` before deployment. The production site therefore serves its own optimized files rather than hotlinking the editorial sources.
 
 ## Accessibility / motion
 
 - semantic headings and landmarks
 - keyboard-visible focus states
-- buttons retain native keyboard interaction
+- native keyboard-operable buttons
 - meaningful image alt text
 - `prefers-reduced-motion` support
-- interface remains readable with motion disabled
+- understandable interface with motion disabled
 
 ## Responsive QA targets
 
-QA breakpoints: `1440`, `1280`, `1024`, `768`, `430`, `390`, `360` px, with extra focus on horizontal overflow, selector strips, mockups, large typography and CTA behavior.
+The layout is explicitly tuned for `1440`, `1280`, `1024`, `768`, `430`, `390` and `360` px, with special handling for horizontal selectors, mockups, large typography and CTA behavior.
