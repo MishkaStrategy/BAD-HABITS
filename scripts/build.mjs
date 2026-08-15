@@ -11,7 +11,11 @@ for (const file of ['index.html', '404.html']) {
   const src = path.join(root, file);
   if (fs.existsSync(src)) fs.copyFileSync(src, path.join(dist, file));
 }
-fs.copyFileSync(path.join(root, 'src', 'styles.css'), path.join(dist, 'assets', 'styles.css'));
+
+const styleParts = ['styles-01.css', 'styles-02.css', 'styles-03.css', 'styles-04.css'];
+const css = styleParts.map(file => fs.readFileSync(path.join(root, 'src', file), 'utf8')).join('\n');
+fs.writeFileSync(path.join(dist, 'assets', 'styles.css'), css);
+
 for (const file of ['data.js', 'main.js']) {
   fs.copyFileSync(path.join(build, file), path.join(dist, 'assets', file));
 }
