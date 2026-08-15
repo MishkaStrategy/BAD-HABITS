@@ -52,44 +52,86 @@ function setupScenarios() {
   }));
 }
 
+function setupRovingTabs(buttons: HTMLButtonElement[], activate: (index: number, focus?: boolean) => void) {
+  buttons.forEach((button, index) => {
+    button.addEventListener('keydown', event => {
+      let next = index;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % buttons.length;
+      else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + buttons.length) % buttons.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = buttons.length - 1;
+      else return;
+      event.preventDefault();
+      activate(next, true);
+    });
+  });
+}
+
 function setupBranches() {
   const buttons = qa<HTMLButtonElement>('[data-branch]');
   const panel = q<HTMLElement>('#branch-panel');
-  if (!panel) return;
+  if (!panel || !buttons.length) return;
+
   const render = (index: number) => {
     const branch = proposal.branches[index];
+    panel.setAttribute('aria-labelledby', buttons[index]?.id || '');
     panel.innerHTML = `
-      <span class="branch-kicker">BAD HABITS / ${String(index + 1).padStart(2, '0')}</span>
+      <span class="branch-kicker">BAD HABITS / CONCEPT / ${String(index + 1).padStart(2, '0')}</span>
       <h3>${branch.address}</h3>
       <p>${branch.tone}</p>
       <div class="branch-actions"><span>меню</span><span>фото</span><span>бронь</span><span>карта</span></div>`;
   };
-  render(0);
-  buttons.forEach((button, index) => button.addEventListener('click', () => {
-    buttons.forEach(b => b.setAttribute('aria-selected', String(b === button)));
+
+  const activate = (index: number, focus = false) => {
+    buttons.forEach((button, i) => {
+      const active = i === index;
+      button.setAttribute('aria-selected', String(active));
+      button.tabIndex = active ? 0 : -1;
+    });
     render(index);
-  }));
+    if (focus) buttons[index]?.focus();
+  };
+
+  activate(0);
+  buttons.forEach((button, index) => button.addEventListener('click', () => activate(index)));
+  setupRovingTabs(buttons, activate);
 }
 
 function setupMockup() {
   const tabs = qa<HTMLButtonElement>('[data-mock-tab]');
   const views = qa<HTMLElement>('[data-mock-view]');
-  tabs.forEach(tab => tab.addEventListener('click', () => {
-    const target = tab.dataset.mockTab;
-    tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
-    views.forEach(v => v.hidden = v.dataset.mockView !== target);
-  }));
+  if (!tabs.length || !views.length) return;
+
+  const activate = (index: number, focus = false) => {
+    const target = tabs[index]?.dataset.mockTab;
+    tabs.forEach((tab, i) => {
+      const active = i === index;
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+    });
+    views.forEach(view => { view.hidden = view.dataset.mockView !== target; });
+    if (focus) tabs[index]?.focus();
+  };
+
+  activate(0);
+  tabs.forEach((tab, index) => tab.addEventListener('click', () => activate(index)));
+  setupRovingTabs(tabs, activate);
 }
 
 function setupNav() {
   const chapters = qa<HTMLAnchorElement>('.chapter-nav a');
   const sections = chapters.map(link => q<HTMLElement>(link.getAttribute('href') || '')).filter(Boolean) as HTMLElement[];
   const io = new IntersectionObserver(entries => {
-    const current = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+    const current = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
     if (!current) return;
-    chapters.forEach(link => link.dataset.active = String(link.getAttribute('href') === `#${current.target.id}`));
+    chapters.forEach(link => {
+      const active = link.getAttribute('href') === `#${current.target.id}`;
+      link.dataset.active = String(active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
   }, { threshold: [0.3, 0.6] });
-  sections.forEach(s => io.observe(s));
+  sections.forEach(section => io.observe(section));
 }
 
 function setupFocusPointer() {
@@ -115,6 +157,7 @@ function init() {
   setupNav();
   setupFocusPointer();
   addEventListener('scroll', updateProgress, { passive: true });
+  addEventListener('resize', updateProgress, { passive: true });
 }
 
 init();
