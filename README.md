@@ -8,7 +8,7 @@ The concept treats the venue itself as the design system: raw concrete, cobalt a
 
 Target GitHub Pages URL: https://mishkastrategy.github.io/BAD-HABITS/
 
-The production build is already published to the repository's `gh-pages` branch. GitHub Pages itself still requires the repository's one-time publishing-source setting to be enabled before the URL becomes public.
+The production build has passed and a compiled snapshot also exists on the repository's `gh-pages` branch from deployment QA. GitHub Pages itself still requires the repository's one-time publishing-source setting to be enabled before the target URL becomes public.
 
 ## Stack
 
@@ -17,7 +17,7 @@ The production build is already published to the repository's `gh-pages` branch.
 - custom CSS, no UI kit
 - native IntersectionObserver / accessible tab-style interactions
 - Sharp build pipeline for optimized AVIF photography
-- GitHub Actions + `gh-pages` production branch
+- GitHub Actions + GitHub Pages artifact deployment
 
 The runtime is deliberately dependency-light: the proposal keeps its editorial art direction custom and ships very little JavaScript. Editable project data is centralized in `src/data.ts`.
 
@@ -35,7 +35,7 @@ Open `http://localhost:4173`.
 
 ## Deployment
 
-`.github/workflows/pages.yml` builds `dist/` on every push to `main` and force-publishes the production output to the `gh-pages` branch. Once GitHub Pages is enabled for this repository with `gh-pages` / `(root)` as the publishing source, future pushes remain synchronized automatically.
+`.github/workflows/pages.yml` builds `dist/` on every push to `main`. It detects whether GitHub Pages has been enabled for the repository; once the one-time repository setting uses **GitHub Actions** as its publishing source, the same workflow uploads and deploys the production artifact automatically. Before that setting exists, the workflow still validates the production build and intentionally skips only the Pages deployment job.
 
 ## Project structure
 
