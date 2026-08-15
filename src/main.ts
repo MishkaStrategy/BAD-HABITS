@@ -5,6 +5,10 @@ type Scenario = (typeof proposal.scenarios)[number];
 const q = <T extends Element>(selector: string) => document.querySelector<T>(selector);
 const qa = <T extends Element>(selector: string) => [...document.querySelectorAll<T>(selector)];
 
+function motionBehavior(): ScrollBehavior {
+  return matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+}
+
 function updateProgress() {
   const max = document.documentElement.scrollHeight - innerHeight;
   const p = max > 0 ? scrollY / max : 0;
@@ -118,6 +122,43 @@ function setupMockup() {
   setupRovingTabs(tabs, activate);
 }
 
+function setupPrototypeControls() {
+  const scrollTo = (selector: string) => q<HTMLElement>(selector)?.scrollIntoView({ behavior: motionBehavior(), block: 'start' });
+
+  const scenarioAction = q<HTMLButtonElement>('.mock-overlay button');
+  if (scenarioAction) {
+    scenarioAction.setAttribute('aria-label', 'Перейти к сценариям посещения');
+    scenarioAction.addEventListener('click', () => scrollTo('#scenarios'));
+  }
+
+  const menuButtons = qa<HTMLButtonElement>('.menu-list button');
+  menuButtons.forEach((button, index) => {
+    button.setAttribute('aria-pressed', String(index === 0));
+    button.addEventListener('click', () => {
+      menuButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    });
+  });
+
+  const bookingAction = q<HTMLButtonElement>('.booking-form button');
+  if (bookingAction) {
+    bookingAction.setAttribute('aria-label', 'Перейти к составу проекта');
+    bookingAction.addEventListener('click', () => scrollTo('#offer'));
+  }
+
+  qa<HTMLLabelElement>('.booking-form label').forEach(label => label.setAttribute('role', 'group'));
+}
+
+function setupSkipLink() {
+  const main = q<HTMLElement>('main');
+  if (!main) return;
+  if (!main.id) main.id = 'main';
+  const link = document.createElement('a');
+  link.className = 'skip-link';
+  link.href = `#${main.id}`;
+  link.textContent = 'Перейти к содержанию';
+  document.body.prepend(link);
+}
+
 function setupNav() {
   const chapters = qa<HTMLAnchorElement>('.chapter-nav a');
   const sections = chapters.map(link => q<HTMLElement>(link.getAttribute('href') || '')).filter(Boolean) as HTMLElement[];
@@ -148,12 +189,14 @@ function applyConfig() {
 }
 
 function init() {
+  setupSkipLink();
   applyConfig();
   updateProgress();
   setupReveal();
   setupScenarios();
   setupBranches();
   setupMockup();
+  setupPrototypeControls();
   setupNav();
   setupFocusPointer();
   addEventListener('scroll', updateProgress, { passive: true });
