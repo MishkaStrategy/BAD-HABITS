@@ -6,9 +6,9 @@ The concept treats the venue itself as the design system: raw concrete, cobalt a
 
 ## Production
 
-Target GitHub Pages URL: https://mishkastrategy.github.io/BAD-HABITS/
+https://mishkacher.github.io/Rima/BAD-HABITS/
 
-The production build has passed and a compiled snapshot also exists on the repository's `gh-pages` branch from deployment QA. GitHub Pages itself still requires the repository's one-time publishing-source setting to be enabled before the target URL becomes public.
+The source project remains in `MishkaStrategy/BAD-HABITS`. Its production build is generated on every push to `main` and published to the repository's `gh-pages` branch. Because the organization repository cannot create its own Pages site record with the currently installed GitHub App permissions, the compiled production is also imported by the already active `mishkacher/Rima` GitHub Pages workflow and exposed at the URL above.
 
 ## Stack
 
@@ -17,7 +17,7 @@ The production build has passed and a compiled snapshot also exists on the repos
 - custom CSS, no UI kit
 - native IntersectionObserver / accessible tab-style interactions
 - Sharp build pipeline for optimized AVIF photography
-- GitHub Actions + GitHub Pages artifact deployment
+- GitHub Actions production build + GitHub Pages hosting
 
 The runtime is deliberately dependency-light: the proposal keeps its editorial art direction custom and ships very little JavaScript. Editable project data is centralized in `src/data.ts`.
 
@@ -35,7 +35,9 @@ Open `http://localhost:4173`.
 
 ## Deployment
 
-`.github/workflows/pages.yml` builds `dist/` on every push to `main`. It detects whether GitHub Pages has been enabled for the repository; once the one-time repository setting uses **GitHub Actions** as its publishing source, the same workflow uploads and deploys the production artifact automatically. Before that setting exists, the workflow still validates the production build and intentionally skips only the Pages deployment job.
+`.github/workflows/pages.yml` in this repository builds `dist/` on every push to `main` and force-publishes a compiled production snapshot to `gh-pages`.
+
+The public GitHub Pages host is currently the already-enabled `mishkacher/Rima` Pages site. Its workflow pulls the current `gh-pages` snapshot from `MishkaStrategy/BAD-HABITS` and publishes it under `/Rima/BAD-HABITS/`.
 
 ## Project structure
 
