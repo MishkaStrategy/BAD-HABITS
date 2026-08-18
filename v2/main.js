@@ -200,12 +200,21 @@ function setupBranches() {
   const tone = q('#branch-tone');
   if (!cards.length) return;
 
-  cards.forEach(card => card.addEventListener('click', () => {
-    cards.forEach(item => item.classList.toggle('active', item === card));
-    if (title) title.textContent = card.dataset.branch || '';
-    if (tone) tone.textContent = card.dataset.tone || '';
-    if (image && card.dataset.image) image.src = card.dataset.image;
-  }));
+  const setActive = activeCard => {
+    cards.forEach(item => {
+      const active = item === activeCard;
+      item.classList.toggle('active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
+    if (title) title.textContent = activeCard.dataset.branch || '';
+    if (tone) tone.textContent = activeCard.dataset.tone || '';
+    if (image && activeCard.dataset.image) image.src = activeCard.dataset.image;
+  };
+
+  cards.forEach(card => {
+    card.setAttribute('aria-pressed', String(card.classList.contains('active')));
+    card.addEventListener('click', () => setActive(card));
+  });
 }
 
 function setupCursorLight() {
