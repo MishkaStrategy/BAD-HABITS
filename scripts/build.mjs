@@ -19,6 +19,13 @@ fs.writeFileSync(path.join(dist, 'assets', 'styles.css'), css);
 for (const file of ['data.js', 'main.js']) {
   fs.copyFileSync(path.join(build, file), path.join(dist, 'assets', file));
 }
+
 fs.cpSync(path.join(root, 'public'), dist, { recursive: true });
+
+const secondConcept = path.join(root, 'v2');
+if (fs.existsSync(secondConcept)) {
+  fs.cpSync(secondConcept, path.join(dist, 'v2'), { recursive: true });
+}
+
 fs.writeFileSync(path.join(dist, '.nojekyll'), '');
-console.log('Built dist/');
+console.log('Built dist/ with primary and second concepts');
